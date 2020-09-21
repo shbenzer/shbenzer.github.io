@@ -1,0 +1,19 @@
+#pdf {
+    border: 1px black solid;
+    //box-shadow: 5px 10px #888888;
+    margin-left: 25%;
+}
+
+#work {
+    border: 2px black solid;
+    box-shadow: 10px 10px #888888;
+    height: 400px;
+    width: 300px;
+    margin-right: 10px;
+    float: left;
+    background-color: #FFFFBF;
+}
+
+body {
+    background-color: lavender;
+}
