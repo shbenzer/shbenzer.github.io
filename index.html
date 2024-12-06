@@ -251,7 +251,7 @@
 
               <div class="service-icon-box">
                 <div class="icon-box">
-                  <a href="./assets/files/Simon-Benzer-Resume.pdf" download class="resume" onclick="trackClickResume()">
+                  <a href="./assets/files/Simon-Benzer-Resume.pdf" download class="resume" onclick="trackClick('Resume')">
                     <ion-icon name="document-attach-outline" color="#03fc84"></ion-icon>
                   </a>
                 </div>
@@ -271,7 +271,7 @@
 
               <div class="service-icon-box">
                 <div class="icon-box">
-                  <a href="./assets/files/CV_Simon_Benzer.pdf" download class="resume" onclick="trackClickCV()">
+                  <a href="./assets/files/CV_Simon_Benzer.pdf" download class="resume" onclick="trackClick('CV')">
                     <ion-icon name="document-attach-outline" color="#03fc84"></ion-icon>
                   </a>
                 </div>
@@ -883,7 +883,7 @@
           <ul class="project-list">
 
             <li class="project-item  active" data-filter-item data-category="ai">
-              <a href="./assets/files/RPM-Agent_Benzer.pdf" download>
+              <a href="./assets/files/RPM-Agent_Benzer.pdf" download onclick="trackClick('RPM')">
 
                 <figure class="project-img">
                   <div class="project-item-icon-box">
@@ -900,7 +900,7 @@
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="utilities">
+            <li class="project-item  active" data-filter-item data-category="utilities" onclick="trackClick('Book Finder')">
               <a href="https://github.com/shbenzer/Book_Finder_bot">
 
                 <figure class="project-img">
@@ -919,7 +919,7 @@
             </li>
 
             <li class="project-item  active" data-filter-item data-category="utilities">
-              <a href="https://github.com/shbenzer/package-lock-analyzer">
+              <a href="https://github.com/shbenzer/package-lock-analyzer" onclick="trackClick('package-loc')">
 
                 <figure class="project-img">
                   <div class="project-item-icon-box">
@@ -937,7 +937,7 @@
             </li>
 
             <li class="project-item  active" data-filter-item data-category="applications">
-              <a href="https://github.com/shbenzer/Colite">
+              <a href="https://github.com/shbenzer/Colite" onclick="trackClick('Colite')">
 
                 <figure class="project-img">
                   <div class="project-item-icon-box">
@@ -955,7 +955,7 @@
             </li>
 
             <li class="project-item  active" data-filter-item data-category="qa">
-              <a href="https://github.com/shbenzer/selenium">
+              <a href="https://github.com/shbenzer/selenium" onclick="trackClick('Selenium')">
 
                 <figure class="project-img">
                   <div class="project-item-icon-box">
@@ -1136,7 +1136,7 @@
   -->
   <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbxRg-37Iljk94FB5iQSknNsfr1NyFHbhg9t1xl59HNutYRCHXV_jScb5T_pXZThGhzx6w/exec";
-    async function trackClickResume() {
+    async function trackClick(anAction) {
       try {
         // event.preventDefault(); //pause download until after logging
         const ipResponse = await fetch("https://api.ipify.org?format=json");
@@ -1146,33 +1146,7 @@
         const data = {
           ip: ipAddress,
           timestamp: new Date().toISOString(),
-          action: "Resume",
-        };
-
-        const response = await fetch(scriptURL, {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-          mode: 'no-cors',
-        });
-
-      } catch (error) {
-          console.error("Error logging click:", error);
-      }
-    }
-    async function trackClickCV() {
-      try {
-        // event.preventDefault(); //pause download until after logging
-        const ipResponse = await fetch("https://api.ipify.org?format=json");
-        const ipData = await ipResponse.json();
-        const ipAddress = ipData.ip;
-
-        const data = {
-          ip: ipAddress,
-          timestamp: new Date().toISOString(),
-          action: "CV",
+          action: anAction,
         };
 
         const response = await fetch(scriptURL, {
